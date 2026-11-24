@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private int MoveInputXHash = Animator.StringToHash("MoveInputX");
     private int MoveInputYHash = Animator.StringToHash("MoveInputY");
     private int isMovingHash = Animator.StringToHash("isMoving");
+    private int isAttackingHash = Animator.StringToHash("isAttacking");
 
     private void Awake()
     {
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimController.SetBool(isMovingHash, false);
         }
+
+        
     }
 
     private void GetLastMoveInput()
@@ -57,6 +60,19 @@ public class PlayerController : MonoBehaviour
         if (moveInput != Vector2.zero)
         {
             lastMoveInput = moveInput;
+        }
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            playerAnimController.SetBool(isAttackingHash, true);
+        }
+
+        else
+        {
+            playerAnimController.SetBool(isAttackingHash, false);
         }
     }
 }
